@@ -273,7 +273,8 @@ const loginLimiter = rateLimit({
 
 app.post(API_PREFIX + '/auth/login', loginLimiter, (req, res) => {
   const username = requiredText(req.body?.username, 'Username', 64);
-  const password = requiredText(req.body?.password, 'Password', 200);
+  const password = typeof req.body?.password === 'string' ? req.body.password : '';
+  if (!password || password.length > 200) fail(400, 'Password wajib diisi dan maksimal 200 karakter.');
   const admin = db.prepare('SELECT id, username, password_hash, is_active FROM admins WHERE username = ? COLLATE NOCASE').get(username);
 
   if (!admin || admin.is_active !== 1 || !bcrypt.compareSync(password, admin.password_hash)) {

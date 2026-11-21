@@ -5,7 +5,7 @@
   "description":"REST API backend for ExGudang using SQLite",
   "type":"module",
   "engines":{"node":">=20"},
-  "scripts":{"start":"node src/server.js","dev":"node --watch src/server.js"},
+  "scripts":{"start":"node src/server.js","dev":"node --watch src/server.js","check":"node --check src/server.js && node --check src/app.js && node --check src/auth.js && node --check src/database.js"},
   "dependencies":{
     "bcryptjs":"^3.0.3",
     "better-sqlite3":"^13.0.3",

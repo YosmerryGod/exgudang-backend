@@ -63,3 +63,5 @@ CREATE TABLE IF NOT EXISTS stock_movements (
 );
 CREATE INDEX IF NOT EXISTS idx_movements_item_date ON stock_movements(item_id, occurred_at DESC, id DESC);
 CREATE INDEX IF NOT EXISTS idx_movements_date_type ON stock_movements(occurred_at, movement_type);
+
+INSERT OR IGNORE INTO categories (name) VALUES ('Bahan Baku'), ('Bumbu'), ('Minuman');
